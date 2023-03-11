@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>记录一次Mathematica笔记</title>
+      <link href="/2023/03/11/mma/"/>
+      <url>/2023/03/11/mma/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://www.wolframalpha.com/">沃尔夫拉姆|阿尔法：计算智能 (wolframalpha.com)</a></p><p><a href="https://www.wolfram.com/mathematica/">Wolfram Mathematica: 現代技術計算</a></p><p><a href="https://www.wolfram.com/language/fast-introduction-for-programmers/zh/">Wolfram 语言教程：快速编程入门</a></p><p>.nb 是 Mathematica 笔记本文件的扩展名。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Mathematica </tag>
+            
+            <tag> Wolfram </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>记录一次linux笔记</title>
       <link href="/2023/03/10/linux/"/>
       <url>/2023/03/10/linux/</url>
@@ -13,7 +40,7 @@
       
       <categories>
           
-          <category> 作业 </category>
+          <category> 作业笔记 </category>
           
       </categories>
       
@@ -21,6 +48,37 @@
         <tags>
             
             <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>记录一次uniapp笔记</title>
+      <link href="/2023/03/10/uniapp/"/>
+      <url>/2023/03/10/uniapp/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://uniapp.dcloud.net.cn/component/uniui/quickstart.html">uni-app官网 (dcloud.net.cn)</a></p><p><a href="https://www.bilibili.com/video/BV17p4y1a71x/?p=1">什么是uniCloud？_哔哩哔哩_bilibili</a></p><p><a href="https://ext.dcloud.net.cn/">DCloud 插件市场</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> uniapp </tag>
+            
+            <tag> unicloud </tag>
+            
+            <tag> HBuilder </tag>
+            
+            <tag> serverless </tag>
             
         </tags>
       
@@ -38,7 +96,7 @@
       
       <categories>
           
-          <category> 学习笔记 </category>
+          <category> 开发笔记 </category>
           
       </categories>
       
@@ -65,7 +123,7 @@
       
       <categories>
           
-          <category> 学习笔记 </category>
+          <category> 开发笔记 </category>
           
       </categories>
       
@@ -92,7 +150,7 @@
       
       <categories>
           
-          <category> 学习笔记 </category>
+          <category> 开发笔记 </category>
           
       </categories>
       
