@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>一些有趣的数学题</title>
+      <link href="/2023/03/20/%E4%B8%80%E4%BA%9B%E6%9C%89%E8%B6%A3%E7%9A%84%E6%95%B0%E5%AD%A6%E9%A2%98/"/>
+      <url>/2023/03/20/%E4%B8%80%E4%BA%9B%E6%9C%89%E8%B6%A3%E7%9A%84%E6%95%B0%E5%AD%A6%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h5 id="得知题目"><a href="#得知题目" class="headerlink" title="得知题目"></a>得知题目</h5><p>孙航，庞涓都是鬼谷子的徒弟，一 天鬼谷子出了这道题目:他从2到99中选出两个不同的整数，把积告诉孙航，把和告诉庞涓。庞涓说:“我虽然不能确定这两个数是什么， 但是我肯定你也不知道这两个数是什么”.孙航说:“我本来的确不知道，但是听你这么一说，我现在能够确定这两个数字了”。庞涓说:“既然你这么说， 我现在也知道这两个数字是什么了”。问这两个数字的和是多少?</p><h5 id="关键的思路"><a href="#关键的思路" class="headerlink" title="关键的思路"></a>关键的思路</h5><p><img src="/../images/math/6.png" alt="img"></p><p><img src="/../images/math/7.png" alt="img"></p><p><img src="/../images/math/8.png" alt="img"></p><h5 id="实际的应用"><a href="#实际的应用" class="headerlink" title="实际的应用"></a>实际的应用</h5><h6 id="给出四个选项"><a href="#给出四个选项" class="headerlink" title="给出四个选项"></a>给出四个选项</h6><p><img src="/../images/math/9.jpg" alt="img"></p><p>写出15、16、17、18分解出的2到99内两个不相等的数，可以看到除了17之外，15、16、18<strong>均出现过两个质数相加的可能</strong>，不符合庞洞说:“我虽然不能确定这两个数是什么， 但是我肯定你也不知道这两个数是什么”这第一个条件。</p><p><strong>当然，我们不需要完整的列出，当我们得知15 会分解出(2,13)，16 会分解出(5,11)，18 会分解出(5,13)或(7,11)，就可以排除这些选项，而17分解的所有组合都不会同时为质数，就可以确定正确答案了。</strong></p><p>n&#x3D;15 factors&#x3D;[(<strong>2, 13</strong>), (3, 12), (4, 11), (5, 10), (6, 9), (7, 8)]<br>n&#x3D;16 factors&#x3D;[(2, 14), (3, 13), (4, 12), (<strong>5, 11</strong>), (6, 10), (7, 9)]<br>n&#x3D;17 factors&#x3D;[(2, 15), (3, 14), (4, 13), (5, 12), (6, 11), (7, 10), (8, 9)]<br>n&#x3D;18 factors&#x3D;[(2, 16), (3, 15), (4, 14), (<strong>5, 13</strong>), (6, 12), (<strong>7, 11</strong>), (8, 10)]</p><h6 id="分享自己的代码"><a href="#分享自己的代码" class="headerlink" title="分享自己的代码"></a>分享自己的代码</h6><p>基于自己小私心，不想浪费，虽然还不完整，也写得不好，但计算的是第一个条件缩小范围的和，这一步就可以排除15，16，18的选项：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]</span><br><span class="line">output_n = []</span><br><span class="line"></span><br><span class="line">for n in range(5, 197):</span><br><span class="line">    factors = []</span><br><span class="line">    has_prime_pair = False</span><br><span class="line">    for i in range(2, 99):</span><br><span class="line">        j = n - i</span><br><span class="line">        if i&lt;j and j &gt; 2 and j &lt; 99 and j != i:</span><br><span class="line">            if (i in primes) and (j in primes):</span><br><span class="line">                has_prime_pair = True</span><br><span class="line">                break</span><br><span class="line">            else:</span><br><span class="line">                factors.append((i, j))</span><br><span class="line">    if not has_prime_pair:</span><br><span class="line">        output_n.append(n)</span><br><span class="line">        print(f&quot;n=&#123;n&#125; factors=&#123;factors&#125;&quot;)</span><br><span class="line"></span><br><span class="line">print(f&quot;output_n=&#123;output_n&#125;&quot;)</span><br><span class="line"></span><br><span class="line"># for m in range(6, 7902):</span><br><span class="line">#     factors = []</span><br><span class="line">#     for a in range(2, m-1):</span><br><span class="line">#         b = m / a</span><br><span class="line">#         if a + b &gt; 7 and a + b &lt; 195 and b % 1 == 0 and a &lt; b and b &gt;= 2 and b &lt;= 99 and a != b:</span><br><span class="line">#             if a + b in output_n:</span><br><span class="line">#                 factors.append((a, b))</span><br><span class="line">#     if len(factors) &gt; 1:</span><br><span class="line">#         print(&quot;m=&quot;, m, &quot;factors=&quot;, factors)</span><br><span class="line">#         print(&quot;length&quot;, len(factors))</span><br></pre></td></tr></table></figure><h5 id="亲友的解法示范"><a href="#亲友的解法示范" class="headerlink" title="亲友的解法示范"></a>亲友的解法示范</h5><h6 id="python"><a href="#python" class="headerlink" title="python"></a>python</h6><p><img src="/../images/math/4.png" alt="img"></p><p><img src="/../images/math/5.png" alt="img"></p><h6 id="mathematica"><a href="#mathematica" class="headerlink" title="mathematica"></a>mathematica</h6><p><img src="/../images/math/1.png" alt="img"></p><p><img src="/../images/math/2.png" alt="img"></p><p><img src="/../images/math/3.png" alt="img"></p><h5 id="补充知识"><a href="#补充知识" class="headerlink" title="补充知识"></a>补充知识</h5><h6 id="哥德巴赫猜想"><a href="#哥德巴赫猜想" class="headerlink" title="哥德巴赫猜想"></a>哥德巴赫猜想</h6><p>哥德巴赫猜想是一个数学猜想，它的内容是：任何一个大于等于6的偶数都可以表示成三个质数之和。<br>这个猜想最早由德国数学家哥德巴赫在1742年提出，但是至今仍未被证明或者推翻。虽然人们已经用计算机验证了这个猜想在一定范围内的正确性，但是没有找到一种通用的方法来证明它。<br>哥德巴赫猜想是数学中非常有名的一个问题，它涉及了质数分布规律、数论等方面的问题。虽然它尚未被证明，但是它已经激发了数学家们长期以来的研究，也推动了数学理论的发展。同时，哥德巴赫猜想也引发了公众对数学的兴趣和关注，成为了数学普及的一个重要话题。</p><p>穷举法是一种常见的数学方法，但是对于哥德巴赫猜想这样的问题，使用穷举法并不可行。<br>想要用穷举法验证哥德巴赫猜想，需要考虑所有的偶数，并找到它们所有的质数分解方式，然后验证其中是否有三个质数之和等于该偶数。但是随着偶数的增大，质数分解的数量也会指数级增长，使得穷举法的计算复杂度变得极高，甚至是不可行的。<br>另外，哥德巴赫猜想并不是一个“存在性”问题，而是一个“普遍性”问题，即对于所有的偶数都能找到对应的三个质数之和。证明它需要用到更高级的数学方法，比如数论中的一些重要结论和技巧，如素数分布的规律、模运算、逼近定理等等。因此，哥德巴赫猜想并不是一个靠简单穷举就能得到答案的问题。</p><h6 id="关于质数"><a href="#关于质数" class="headerlink" title="关于质数"></a>关于质数</h6><ol><li>质数是指只能被1和它本身整除的自然数，比如2、3、5、7等。</li><li>除了1和2之外，所有的质数都是奇数。</li><li>质数在数论和密码学中有着广泛的应用，如RSA加密算法就是基于质数的。</li><li>质数可以用于求最大公约数和最小公倍数，比如两个数的最大公约数一定是它们的质因数中的公共部分。</li><li>质数分布的规律一直是数学家们研究的话题之一。素数分布的规律并不简单，虽然有一些规律性，但它并不像2的倍数或者3的倍数那样有规律地出现。</li><li>截止2021年，已知的最大质数是$2^{82,589,933}-1$，它是一个名为M82589933的梅森素数。这个数字共有24,862,048位，是目前已知的最大的质数。</li><li>由于质数的特殊性质，对于一个大数进行质因数分解是一项非常困难的任务。这也是现代密码学中基于质数的加密算法的安全性的一个重要原因。<br>希望这些信息能帮助你更好地了解质数。</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习笔记 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>记录一些gpt和newbing的回答</title>
       <link href="/2023/03/17/bing/"/>
       <url>/2023/03/17/bing/</url>
@@ -17,6 +36,31 @@
           
       </categories>
       
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>《态度改变与社会影响》摘抄</title>
+      <link href="/2023/03/17/%E6%80%81%E5%BA%A6%E6%94%B9%E5%8F%98%E4%B8%8E%E7%A4%BE%E4%BC%9A%E5%BD%B1%E5%93%8D/"/>
+      <url>/2023/03/17/%E6%80%81%E5%BA%A6%E6%94%B9%E5%8F%98%E4%B8%8E%E7%A4%BE%E4%BC%9A%E5%BD%B1%E5%93%8D/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>本书系统地总结了心理学在态度形成和改变方面的研究理论和实践，从而帮助读者理解你是如何影响他人，反过来又是如何<strong>被他人和其他系统性力量所影响</strong>的。本书包括了社会影响的所有内容：<strong>说服，依从，从众，认知不协调和自我归因，条件反射，社会学习，态度与行为的关系，态度的卷入，偏见，非言语交流，甚至阈下影响。</strong></p><p>在这个系统中，<strong>态度，认知，行为和意图</strong>都<strong>受到外在事物的影响，而同时又所有受到彼此间的影响。</strong><br>我们用了两章的篇幅来谈社会影响原则的应用。我们觉得它是“正在成长的”领域，也是未来的领域。一个应用章节主要关注<strong>在法律系统中影响</strong>的作用，另一个主要章节是关于<strong>如<br>何提高生活质量的问题，包括：环境，个人心理健康等。</strong></p><h4 id="第1章-一个充满影响的世界"><a href="#第1章-一个充满影响的世界" class="headerlink" title="第1章 一个充满影响的世界"></a>第1章 一个充满影响的世界</h4><p>社会影响比比皆是，发生在任何地点、任何时间，这个世界本来如此。要想在这个社会中最有效地发挥作用，就需要知道何时何地与如何利用这些影响。<strong>这样就有能力辨别可能施加于你的社会影响，同时有能力决定接受或拒绝某种特点的社会影响。</strong>本书旨在介绍社会影响的心理学，它将提供如何抵制不需要的影响源，如何成为更有效地发挥影响的一员等实用性的建议。</p><p>本书作者的意图即是如此。我们的学术目的是提供有关各种形式的社会影响的本质的信息基础。从应用角度讲，我们期望这些知识在你日常生活中体现出价值——<strong>使你成为更成功的社会影响者和更明智的公民——能够识别并拒绝不利的社会影响和不公正的权威。</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 个体认知 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 津巴多 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -42,50 +86,6 @@
             <tag> 费尔德曼 </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>《态度改变与社会影响》摘抄</title>
-      <link href="/2023/03/16/%E6%80%81%E5%BA%A6%E6%94%B9%E5%8F%98%E4%B8%8E%E7%A4%BE%E4%BC%9A%E5%BD%B1%E5%93%8D/"/>
-      <url>/2023/03/16/%E6%80%81%E5%BA%A6%E6%94%B9%E5%8F%98%E4%B8%8E%E7%A4%BE%E4%BC%9A%E5%BD%B1%E5%93%8D/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>本书系统地总结了心理学在态度形成和改变方面的研究理论和实践，从而帮助读者理解你是如何影响他人，反过来又是如何<strong>被他人和其他系统性力量所影响</strong>的。本书包括了社会影响的所有内容：<strong>说服，依从，从众，认知不协调和自我归因，条件反射，社会学习，态度与行为的关系，态度的卷入，偏见，非言语交流，甚至阈下影响。</strong></p><p>在这个系统中，<strong>态度，认知，行为和意图</strong>都<strong>受到外在事物的影响，而同时又所有受到彼此间的影响。</strong><br>我们用了两章的篇幅来谈社会影响原则的应用。我们觉得它是“正在成长的”领域，也是未来的领域。一个应用章节主要关注<strong>在法律系统中影响</strong>的作用，另一个主要章节是关于<strong>如<br>何提高生活质量的问题，包括：环境，个人心理健康等。</strong></p><h4 id="第1章-一个充满影响的世界"><a href="#第1章-一个充满影响的世界" class="headerlink" title="第1章 一个充满影响的世界"></a>第1章 一个充满影响的世界</h4>]]></content>
-      
-      
-      <categories>
-          
-          <category> 个体认知 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 津巴多 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>一些有趣的数学题</title>
-      <link href="/2023/03/16/%E4%B8%80%E4%BA%9B%E6%9C%89%E8%B6%A3%E7%9A%84%E6%95%B0%E5%AD%A6%E9%A2%98/"/>
-      <url>/2023/03/16/%E4%B8%80%E4%BA%9B%E6%9C%89%E8%B6%A3%E7%9A%84%E6%95%B0%E5%AD%A6%E9%A2%98/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h5 id="得知题目"><a href="#得知题目" class="headerlink" title="得知题目"></a>得知题目</h5><p>孙航，庞涓都是鬼谷子的徒弟，一 天鬼谷子出了这道题目:他从2到99中选出两个不同的整数，把积告诉孙航，把和告诉庞涓。庞涓说:“我虽然不能确定这两个数是什么， 但是我肯定你也不知道这两个数是什么”.孙航说:“我本来的确不知道，但是听你这么一说，我现在能够确定这两个数字了”。庞涓说:“既然你这么说， 我现在也知道这两个数字是什么了”。问这两个数字的和是多少?</p><h5 id="关键的思路"><a href="#关键的思路" class="headerlink" title="关键的思路"></a>关键的思路</h5><p><img src="/../images/math/6.png" alt="img"></p><p><img src="/../images/math/7.png" alt="img"></p><p><img src="/../images/math/8.png" alt="img"></p><h5 id="实际的应用"><a href="#实际的应用" class="headerlink" title="实际的应用"></a>实际的应用</h5><h6 id="给出四个选项"><a href="#给出四个选项" class="headerlink" title="给出四个选项"></a>给出四个选项</h6><p><img src="/../images/math/9.jpg" alt="img"></p><p>写出15、16、17、18分解出的2到99内两个不相等的数，可以看到除了17之外，15、16、18<strong>均出现过两个质数相加的可能</strong>，不符合庞洞说:“我虽然不能确定这两个数是什么， 但是我肯定你也不知道这两个数是什么”这第一个条件。</p><p><strong>当然，我们不需要完整的列出，当我们得知15 会分解出(2,13)，16 会分解出(5,11)，18 会分解出(5,13)或(7,11)，就可以排除这些选项，而17分解的所有组合都不会同时为质数，就可以确定正确答案了。</strong></p><p>n&#x3D;15 factors&#x3D;[(<strong>2, 13</strong>), (3, 12), (4, 11), (5, 10), (6, 9), (7, 8)]<br>n&#x3D;16 factors&#x3D;[(2, 14), (3, 13), (4, 12), (<strong>5, 11</strong>), (6, 10), (7, 9)]<br>n&#x3D;17 factors&#x3D;[(2, 15), (3, 14), (4, 13), (5, 12), (6, 11), (7, 10), (8, 9)]<br>n&#x3D;18 factors&#x3D;[(2, 16), (3, 15), (4, 14), (<strong>5, 13</strong>), (6, 12), (<strong>7, 11</strong>), (8, 10)]</p><h6 id="分享自己的代码"><a href="#分享自己的代码" class="headerlink" title="分享自己的代码"></a>分享自己的代码</h6><p>基于自己小私心，不想浪费，虽然还不完整，也写得不好，但计算的是第一个条件缩小范围的和，这一步就可以排除15，16，18的选项：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]</span><br><span class="line">output_n = []</span><br><span class="line"></span><br><span class="line">for n in range(5, 197):</span><br><span class="line">    factors = []</span><br><span class="line">    has_prime_pair = False</span><br><span class="line">    for i in range(2, 99):</span><br><span class="line">        j = n - i</span><br><span class="line">        if i&lt;j and j &gt; 2 and j &lt; 99 and j != i:</span><br><span class="line">            if (i in primes) and (j in primes):</span><br><span class="line">                has_prime_pair = True</span><br><span class="line">                break</span><br><span class="line">            else:</span><br><span class="line">                factors.append((i, j))</span><br><span class="line">    if not has_prime_pair:</span><br><span class="line">        output_n.append(n)</span><br><span class="line">        print(f&quot;n=&#123;n&#125; factors=&#123;factors&#125;&quot;)</span><br><span class="line"></span><br><span class="line">print(f&quot;output_n=&#123;output_n&#125;&quot;)</span><br><span class="line"></span><br><span class="line"># for m in range(6, 7902):</span><br><span class="line">#     factors = []</span><br><span class="line">#     for a in range(2, m-1):</span><br><span class="line">#         b = m / a</span><br><span class="line">#         if a + b &gt; 7 and a + b &lt; 195 and b % 1 == 0 and a &lt; b and b &gt;= 2 and b &lt;= 99 and a != b:</span><br><span class="line">#             if a + b in output_n:</span><br><span class="line">#                 factors.append((a, b))</span><br><span class="line">#     if len(factors) &gt; 1:</span><br><span class="line">#         print(&quot;m=&quot;, m, &quot;factors=&quot;, factors)</span><br><span class="line">#         print(&quot;length&quot;, len(factors))</span><br></pre></td></tr></table></figure><h5 id="亲友的解法示范"><a href="#亲友的解法示范" class="headerlink" title="亲友的解法示范"></a>亲友的解法示范</h5><h6 id="python"><a href="#python" class="headerlink" title="python"></a>python</h6><p><img src="/../images/math/4.png" alt="img"></p><p><img src="/../images/math/5.png" alt="img"></p><h6 id="mathematica"><a href="#mathematica" class="headerlink" title="mathematica"></a>mathematica</h6><p><img src="/../images/math/1.png" alt="img"></p><p><img src="/../images/math/2.png" alt="img"></p><p><img src="/../images/math/3.png" alt="img"></p><h5 id="补充知识"><a href="#补充知识" class="headerlink" title="补充知识"></a>补充知识</h5><h6 id="哥德巴赫猜想"><a href="#哥德巴赫猜想" class="headerlink" title="哥德巴赫猜想"></a>哥德巴赫猜想</h6><p>哥德巴赫猜想是一个数学猜想，它的内容是：任何一个大于等于6的偶数都可以表示成三个质数之和。<br>这个猜想最早由德国数学家哥德巴赫在1742年提出，但是至今仍未被证明或者推翻。虽然人们已经用计算机验证了这个猜想在一定范围内的正确性，但是没有找到一种通用的方法来证明它。<br>哥德巴赫猜想是数学中非常有名的一个问题，它涉及了质数分布规律、数论等方面的问题。虽然它尚未被证明，但是它已经激发了数学家们长期以来的研究，也推动了数学理论的发展。同时，哥德巴赫猜想也引发了公众对数学的兴趣和关注，成为了数学普及的一个重要话题。</p><p>穷举法是一种常见的数学方法，但是对于哥德巴赫猜想这样的问题，使用穷举法并不可行。<br>想要用穷举法验证哥德巴赫猜想，需要考虑所有的偶数，并找到它们所有的质数分解方式，然后验证其中是否有三个质数之和等于该偶数。但是随着偶数的增大，质数分解的数量也会指数级增长，使得穷举法的计算复杂度变得极高，甚至是不可行的。<br>另外，哥德巴赫猜想并不是一个“存在性”问题，而是一个“普遍性”问题，即对于所有的偶数都能找到对应的三个质数之和。证明它需要用到更高级的数学方法，比如数论中的一些重要结论和技巧，如素数分布的规律、模运算、逼近定理等等。因此，哥德巴赫猜想并不是一个靠简单穷举就能得到答案的问题。</p><h6 id="关于质数"><a href="#关于质数" class="headerlink" title="关于质数"></a>关于质数</h6><ol><li>质数是指只能被1和它本身整除的自然数，比如2、3、5、7等。</li><li>除了1和2之外，所有的质数都是奇数。</li><li>质数在数论和密码学中有着广泛的应用，如RSA加密算法就是基于质数的。</li><li>质数可以用于求最大公约数和最小公倍数，比如两个数的最大公约数一定是它们的质因数中的公共部分。</li><li>质数分布的规律一直是数学家们研究的话题之一。素数分布的规律并不简单，虽然有一些规律性，但它并不像2的倍数或者3的倍数那样有规律地出现。</li><li>截止2021年，已知的最大质数是$2^{82,589,933}-1$，它是一个名为M82589933的梅森素数。这个数字共有24,862,048位，是目前已知的最大的质数。</li><li>由于质数的特殊性质，对于一个大数进行质因数分解是一项非常困难的任务。这也是现代密码学中基于质数的加密算法的安全性的一个重要原因。<br>希望这些信息能帮助你更好地了解质数。</li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> 学习笔记 </category>
-          
-      </categories>
-      
       
     </entry>
     
