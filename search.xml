@@ -316,35 +316,6 @@
     
     
     <entry>
-      <title>记录一次uniapp笔记ing</title>
-      <link href="/2023/03/10/4-uniapp/"/>
-      <url>/2023/03/10/4-uniapp/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="一些资源"><a href="#一些资源" class="headerlink" title="一些资源"></a>一些资源</h2><p><a href="https://uniapp.dcloud.net.cn/component/uniui/quickstart.html">uni-app官网 (dcloud.net.cn)</a></p><p><a href="https://www.bilibili.com/video/BV17p4y1a71x/?p=1">什么是uniCloud？_哔哩哔哩_bilibili</a></p><p><a href="https://ext.dcloud.net.cn/">DCloud 插件市场</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 学习笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> uniapp </tag>
-            
-            <tag> unicloud </tag>
-            
-            <tag> serverless </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>本博客如何搭建三（亲友域名快速搭建）</title>
       <link href="/2023/03/09/3-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A23/"/>
       <url>/2023/03/09/3-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A23/</url>
